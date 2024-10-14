@@ -11,7 +11,16 @@ export const typeDefs = gql`
         trend: Float!
     }
 
+    type Price {
+        id: Int!
+        date: String!
+        close: Float!
+        volume: Int!
+        security: Security!
+    }
+
     type Query {
         getSecurities: [Security!]!
+        getPricesBySecurityId(securityId: Int!): [Price!]!
     }
 `;
