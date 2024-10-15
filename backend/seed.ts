@@ -20,16 +20,18 @@ const insertData = async () => {
     // Lê o conteúdo de data.json
     const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
 
+    let count=1;
+
     // Itera sobre cada entrada (título) no arquivo JSON
     for (const entry of data) {
       // Insere o título na tabela securities
       const res = await pool.query(
-        'INSERT INTO securities (ticker, security_name, sector, country, trend) VALUES ($1, $2, $3, $4, $5) RETURNING id',
+        'INSERT INTO securities (ticker, security_name, sector, country, trend) VALUES ($1, $2, $3, $4, $5)',
         [entry.ticker, entry.securityName, entry.sector, entry.country, entry.trend]
       );
 
       // Pega o id da ação inserida
-      const securityId = res.rows[0].id;
+      const securityId = count;
 
       // Insere os preços e volumes diários na tabela prices
       for (const price of entry.prices) {
@@ -38,6 +40,8 @@ const insertData = async () => {
           [securityId, price.date, parseFloat(price.close), parseInt(price.volume, 10)]
         );
       }
+
+      count++;
     }
 
     console.log('Dados inseridos com sucesso!');

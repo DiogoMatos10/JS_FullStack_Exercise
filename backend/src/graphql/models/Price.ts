@@ -1,20 +1,30 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Security } from './Security'; 
+// src/graphql/models/Price.ts
+import { ObjectType, Field, Int, Float } from 'type-graphql';
+import { DateTimeResolver } from 'graphql-scalars';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Security } from './Security';
 
-@Entity('prices') 
+@ObjectType()
+@Entity('prices')
 export class Price {
+    @Field(() => Int)
     @PrimaryGeneratedColumn()
     id!: number;
 
+    @Field(() => Security)
     @ManyToOne(() => Security, security => security.prices)
-    security!: Security; 
+    @JoinColumn({ name: 'security_id' })
+    security!: Security;
 
-    @Column({ type: 'date' })
-    date!: Date; 
+    @Field(() => DateTimeResolver)
+    @Column({ type: 'timestamptz' }) 
+    date!: Date;
 
-    @Column({ type: 'float' })
-    close!: number; 
+    @Field(() => Float, { nullable: true })
+    @Column({ type: 'float', nullable: true })
+    close!: number;
 
-    @Column({ type: 'bigint' }) 
-    volume!: number; 
+    @Field(() => Int, { nullable: true })
+    @Column({ type: 'bigint', nullable: true })
+    volume?: number;
 }

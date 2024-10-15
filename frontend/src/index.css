@@ -1,0 +1,18 @@
+:root{
+    --primary-color:#0B111E;
+    --secondary-color:#11192D;
+    --text-color:#AAD9D9;
+    --hover-color:#72C0C0;
+
+    --glass-background-color:rgba(255, 255, 255, 0.012);
+    --glass-box-shadow:0 4px 30px hsla(0, 0%, 0%, 0.15);
+    --glass-backdrop-filter: blur(2.3px);
+    --glass-webkit-backdrop-filter:blur(2.3px);
+    --glass-border-color: rgba(255, 255, 255, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--primary-color);
+}

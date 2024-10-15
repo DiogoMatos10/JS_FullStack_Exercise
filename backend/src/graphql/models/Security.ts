@@ -1,26 +1,36 @@
+// src/graphql/models/Security.ts
+import { ObjectType, Field, Int } from 'type-graphql';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Price } from './Price';
 
+@ObjectType()
 @Entity('securities')
 export class Security {
+    @Field(() => Int)
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ length: 20 }) 
+    @Field()
+    @Column({ length: 20 })
     ticker!: string;
 
-    @Column({ name: 'security_name', length: 100 }) 
+    @Field()
+    @Column({ name: 'security_name', length: 100 })
     securityName!: string;
 
-    @Column({ length: 100 }) 
+    @Field()
+    @Column({ length: 100 })
     sector!: string;
 
-    @Column({ length: 100 }) 
+    @Field()
+    @Column({ length: 100 })
     country!: string;
 
-    @Column('float') 
+    @Field()
+    @Column('float')
     trend!: number;
 
-    @OneToMany(() => Price, price => price.security) 
-    prices!: Price[]; 
+    @Field(() => [Price])
+    @OneToMany(() => Price, price => price.security)
+    prices!:Price[];
 }

@@ -14,13 +14,14 @@ export const typeDefs = gql`
     type Price {
         id: Int!
         date: String!
-        close: Float!
-        volume: Int!
+        close: Float
+        volume: Int
         security: Security!
     }
 
     type Query {
         getSecurities: [Security!]!
-        getPricesBySecurityId(securityId: Int!): [Price!]!
+        getPricesBySecurityId(security_id: Int!): [Price!]!
+        getSecurityByTicker(ticker: String!): Security
     }
 `;

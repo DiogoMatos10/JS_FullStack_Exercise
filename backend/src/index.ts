@@ -1,21 +1,23 @@
-// src/index.ts
 import { ApolloServer } from 'apollo-server';
-import { typeDefs } from './graphql/typeDefs';
-import { resolvers } from './graphql/resolvers';
-import { AppDataSource } from './db'; 
-
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-});
+import { buildSchema } from 'type-graphql';
+import { SecurityResolver } from './graphql/resolvers/SecurityResolver';
+import { AppDataSource } from './db';
 
 AppDataSource.initialize()
-    .then(() => {
-        return server.listen();
+    .then(async () => {
+        const schema = await buildSchema({
+            resolvers: [SecurityResolver],
+        });
+
+        const server = new ApolloServer({
+            schema,
+            context: ({ req }) => {
+                return { headers: req.headers };
+            },
+        });
+
+        server.listen().then(({ url }) => {
+            console.log(`Server ready at ${url}`);
+        });
     })
-    .then(({ url }) => {
-        console.log(`🚀 Server ready at ${url}`);
-    })
-    .catch((error) => {
-        console.error("Error starting the server:", error);
-    });
+    .catch((error) => console.error("Error during Data Source initialization:", error));

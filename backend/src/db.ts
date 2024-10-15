@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
     password: '1234',
     database: 'securities_db',
     entities: [Security, Price], 
-    synchronize: true,
+    synchronize: false,
     logging: ['query', 'error'],
 });
 
