@@ -1,0 +1,18 @@
+/* Box containing the detail information and chart */
+.detail-box {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Stack children vertically */
+    margin: 100px auto; /* Center horizontally and provide vertical margin */
+    max-width: 950px; /* Maximum width for the box */
+}
+
+/* Detail information styling */
+.detail-info-box {
+    margin-bottom: 20px; /* Margin below the information box */
+    color: var(--text-color); /* Text color from theme */
+}
+
+/* Chart container styling */
+.detail-chart-box {
+    width: 100%; /* Full width of the container */
+}

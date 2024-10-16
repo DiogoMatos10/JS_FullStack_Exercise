@@ -1,11 +1,10 @@
-// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import SecurityList from './components/SecurityList';
 import SecurityDetail from './components/SecurityDetail';
 
-// Configuração do Apollo Client
+// Config of Apollo Client
 const client = new ApolloClient({
   uri: 'http://localhost:4000', 
   cache: new InMemoryCache(),

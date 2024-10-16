@@ -14,9 +14,9 @@ export const AppDataSource = new DataSource({
     logging: ['query', 'error'],
 });
 
-// Conectando ao banco de dados
+// Initializing the database connection
 AppDataSource.initialize()
     .then(() => {
-        console.log('Conexão com o banco de dados estabelecida!');
+        console.log('Successful database connection!');
     })
     .catch((error) => console.error('Error connecting to the database', error));

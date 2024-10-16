@@ -1,4 +1,3 @@
-// src/graphql/models/Price.ts
 import { ObjectType, Field, Int, Float } from 'type-graphql';
 import { DateTimeResolver } from 'graphql-scalars';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';

@@ -1,12 +1,15 @@
+/* Footer container styles */
 .footer-container {
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-  }
-  
-  .footer-text {
-    color: var(--text-color);
-    text-align: center;
-    font-size: 0.875rem;
-  }
-  
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the footer content */
+    margin-top: 100px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Footer text styles */
+.footer-text {
+    color: var(--text-color); /* Text color from theme */
+    text-align: center; /* Center align text */
+    font-size: 0.875rem; /* Font size for footer text */
+}

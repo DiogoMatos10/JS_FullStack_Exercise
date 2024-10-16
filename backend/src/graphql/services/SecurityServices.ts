@@ -2,7 +2,9 @@ import { AppDataSource } from '../../db';
 import { Security } from '../models/Security';
 import { Price } from '../models/Price';
 
+// The SecurityService class provides methods to interact with the database
 export class SecurityService {
+    // Fetches all securities from the database
     async getSecurities(): Promise<Security[]> {
         try {
             return await AppDataSource.getRepository(Security).find();
@@ -12,6 +14,7 @@ export class SecurityService {
         }
     }
 
+    // Fetches prices by security ID from the database
     async getPricesBySecurityId(security_id: number): Promise<Price[]> {
         try {
             return await AppDataSource.getRepository(Price).find({
@@ -23,7 +26,8 @@ export class SecurityService {
             throw new Error("Error fetching prices");
         }
     }
-
+    
+    // Fetches security by ticker from the database
     async getSecurityByTicker(ticker: string): Promise<Security | null> {
         try {
             return await AppDataSource.getRepository(Security).findOne({ where: { ticker } });

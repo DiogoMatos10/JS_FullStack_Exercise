@@ -5,13 +5,13 @@ import { Price } from '../models/Price';
 
 const securityController = new SecurityController();
 
+// The SecurityResolver class contains resolver functions for the GraphQL queries and mutations
 @Resolver()
 export class SecurityResolver {
     @Query(() => [Security])
     async getSecurities(): Promise<Security[]> {
         try {
             const securities = await securityController.getSecurities();
-            console.log(`Fetched securities: ${JSON.stringify(securities)}`);
             return securities;
         } catch (error) {
             console.error("Error fetching securities:", error);
@@ -24,7 +24,7 @@ export class SecurityResolver {
         console.log(`Received security_id: ${security_id}`);
         if (Number.isInteger(security_id)) {
             const prices = await securityController.getPricesBySecurityId(security_id);
-            console.log(`Fetched prices for security_id ${security_id}: ${JSON.stringify(prices)}`);
+            console.log(`Fetched prices for security_id ${security_id}`);
             return prices;
         } else {
             throw new Error("security_id must be an integer");
@@ -35,7 +35,6 @@ export class SecurityResolver {
     async getSecurityByTicker(@Arg('ticker') ticker: string): Promise<Security | null> {
         try {
             const security = await securityController.getSecurityByTicker(ticker);
-            console.log(`Fetched security by ticker: ${JSON.stringify(security)}`);
             return security;
         } catch (error) {
             console.error(`Error fetching security by ticker: ${ticker}`, error);

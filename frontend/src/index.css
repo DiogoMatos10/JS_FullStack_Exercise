@@ -1,28 +1,20 @@
-/* Adicionando fonte Roboto */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* Defining CSS variables for colors */
 :root {
-    --primary-color: #0B111E;
-    --secondary-color: #11192D;
-    --text-color: #F5F5F5;
-    --hover-color: #72C0C0;
-    --glass-background-color: rgba(255, 255, 255, 0.012);
-    --glass-box-shadow: 0 4px 30px hsla(0, 0%, 0%, 0.15);
-    --glass-backdrop-filter: blur(2.3px);
-    --glass-webkit-backdrop-filter: blur(2.3px);
-    --glass-border-color: rgba(255, 255, 255, 0.05);
-    --glass-border: 1px solid rgba(255, 255, 255, 0.05);
+    --primary-color: #0B111E; /* Primary background color */
+    --secondary-color: #11192D; /* Secondary background color */
+    --text-color: #F5F5F5; /* Text color */
+    --hover-color: #72C0C0; /* Hover effect color */
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    color: var(--text-color);
-    background-color: var(--primary-color);
-    font-family: 'Roboto', sans-serif;
-    min-width: 500px; /* Definir min-width para a página inteira */
-    overflow-x: auto; /* Habilitar scroll-x quando necessário */
+    margin-top: 50px; /* Top margin */
+    padding: 0px 50px; /* Padding on the left and right */
+    margin-bottom: 0; /* Bottom margin */
+    color: var(--text-color); /* Text color */
+    background-color: var(--primary-color); /* Background color */
+    font-family: 'Roboto', sans-serif; /* Font family */
+    min-width: 500px; /* Minimum width */
+    overflow-x: auto; /* Horizontal overflow handling */
 }
-
-
-
