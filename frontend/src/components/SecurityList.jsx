@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, gql } from '@apollo/client';
-import { 
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, 
-  Paper, Typography, Container, TableSortLabel, TablePagination, Box 
+import {
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper, Typography, Container, TableSortLabel, TablePagination, Box
 } from '@mui/material';
 import './SecurityList.css';
+import Footer from './Footer'; 
+
 
 const GET_SECURITIES = gql`
   query GetSecurities {
@@ -29,10 +31,18 @@ function getTrendColor(trend) {
 function SecurityList() {
   const navigate = useNavigate();
   const { loading, error, data } = useQuery(GET_SECURITIES);
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('ticker');
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [order, setOrder] = useState(localStorage.getItem('order') || 'asc');
+  const [orderBy, setOrderBy] = useState(localStorage.getItem('orderBy') || 'ticker');
+  const [page, setPage] = useState(parseInt(localStorage.getItem('page')) || 0);
+  const [rowsPerPage, setRowsPerPage] = useState(parseInt(localStorage.getItem('rowsPerPage')) || 5);
+
+  useEffect(() => {
+    localStorage.setItem('order', order);
+    localStorage.setItem('orderBy', orderBy);
+    localStorage.setItem('page', page);
+    localStorage.setItem('rowsPerPage', rowsPerPage);
+  }, [order, orderBy, page, rowsPerPage]);
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -65,8 +75,8 @@ function SecurityList() {
         Securities
       </Typography>
       <Box className="table-box">
-        <TableContainer component={Paper} className="table-container">
-          <Table>
+      <TableContainer component={Paper} className="table-container" style={{ borderRadius: '8px 8px 0 0' }}>
+        <Table>
             <TableHead>
               <TableRow>
                 <TableCell sortDirection={orderBy === 'ticker' ? order : false}>
@@ -87,8 +97,24 @@ function SecurityList() {
                     Name
                   </TableSortLabel>
                 </TableCell>
-                <TableCell>Sector</TableCell>
-                <TableCell>Country</TableCell>
+                <TableCell sortDirection={orderBy === 'sector' ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === 'sector'}
+                    direction={orderBy === 'sector' ? order : 'asc'}
+                    onClick={() => handleRequestSort('sector')}
+                  >
+                    Sector
+                  </TableSortLabel>
+                </TableCell>
+                <TableCell sortDirection={orderBy === 'country' ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === 'country'}
+                    direction={orderBy === 'country' ? order : 'asc'}
+                    onClick={() => handleRequestSort('country')}
+                  >
+                    Country
+                  </TableSortLabel>
+                </TableCell>
                 <TableCell sortDirection={orderBy === 'trend' ? order : false}>
                   <TableSortLabel
                     active={orderBy === 'trend'}
@@ -106,6 +132,7 @@ function SecurityList() {
                   key={security.id}
                   onClick={() => navigate(`/securities/${security.ticker}`)}
                   style={{ cursor: 'pointer' }}
+                  className="table-row"
                 >
                   <TableCell>{security.ticker}</TableCell>
                   <TableCell>{security.securityName}</TableCell>
@@ -118,17 +145,20 @@ function SecurityList() {
               ))}
             </TableBody>
           </Table>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 15]}
-            component="div"
-            count={data.getSecurities.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onPageChange={handleChangePage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
         </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 15]}
+          component="div"
+          count={data.getSecurities.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          className="table-pagination"
+          style={{ borderRadius: '0 0 8px 8px', borderTop: 'none' }}
+        />
       </Box>
+      <Footer/>
     </Container>
   );
 }

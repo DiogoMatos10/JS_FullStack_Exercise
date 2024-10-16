@@ -1,35 +1,171 @@
-/* SecurityList.css */
+/* Container for the entire security list */
 .security-list-container {
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  .title {
-    text-align: left;
-    margin-bottom: 20px;
-  }
-  
-  .table-box {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .table-container {
+  padding: 50px;
+}
+
+/* Title styling */
+.title {
+  text-align: left;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Box containing the table */
+.table-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 0;
+  width: 100%;
+}
+
+/* Table container styling */
+.table-container {
+  width: 100%;
+  max-width: 950px;
+  overflow-x: auto;
+  background: none !important; /* Override default background */
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.table-container:hover {
+  background: none !important; /* Override background on hover */
+}
+
+.table-container th, .table-container td {
+  padding: 10px 20px;
+}
+
+/* Header cell styling */
+.table-container th {
+  background-color: var(--secondary-color) !important; /* Force background color */
+  color: var(--text-color) !important; /* Force text color */
+  border: none;
+}
+
+.table-container th:hover {
+  background-color: var(--secondary-color) !important; /* Maintain background on hover */
+  color: var(--text-color) !important; /* Maintain text color on hover */
+}
+
+/* Table cell styling */
+.table-container td {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+}
+
+/* Row hover effect */
+.table-container tr:hover {
+  background-color: var(--hover-color);
+}
+
+.table-container tr:hover td {
+  color: var(--hover-color);
+}
+
+/* Custom scrollbar styling */
+.table-container::-webkit-scrollbar {
+  height: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* Pagination styling */
+.table-pagination {
+  background-color: var(--secondary-color) !important;
+  color: var(--text-color) !important;
+  width: 100%;
+  max-width: 950px; /* Matches table width */
+  border-top: var(--glass-border);
+  border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+}
+
+.table-pagination .MuiTablePagination-toolbar {
+  background-color: var(--secondary-color) !important;
+  color: var(--text-color) !important;
+}
+
+.table-pagination .MuiTablePagination-caption,
+.table-pagination .MuiSelect-select,
+.table-pagination .MuiTablePagination-actions {
+  color: var(--text-color) !important;
+}
+
+.table-pagination .MuiTablePagination-select:hover,
+.table-pagination .MuiTablePagination-actions button:hover {
+  background-color: var(--hover-color) !important;
+}
+
+.table-pagination .Mui-disabled {
+  color: var(--text-color) !important;
+}
+
+.table-pagination .MuiTablePagination-select:hover {
+  background: none !important;
+}
+
+/* Ensures pagination width matches table width */
+@media (min-width: 950px) {
+  .table-pagination {
     width: 100%;
-    max-width: 900px;
-    overflow-x: auto;
+    max-width: 950px;
+    margin: auto;
   }
-  
-  .table-container::-webkit-scrollbar {
-    height: 10px;
-  }
-  
-  .table-container::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-  }
-  
-  .table-container::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
+}
+
+/* Custom styles for TableSortLabel */
+.MuiTableSortLabel-root:hover {
+  color: var(--hover-color) !important;
+}
+
+.MuiTableSortLabel-active {
+  color: var(--hover-color) !important;
+}
+
+/* TableSortLabel active and hover styles */
+.css-7x9vt0-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active,
+.css-7x9vt0-MuiButtonBase-root-MuiTableSortLabel-root:hover {
+  color: var(--hover-color) !important;
+}
+
+.css-7x9vt0-MuiButtonBase-root-MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon,
+.css-7x9vt0-MuiButtonBase-root-MuiTableSortLabel-root:hover .MuiTableSortLabel-icon {
+  color: var(--hover-color) !important;
+}
+
+/* Ensure TableHead background color on hover */
+.MuiTableHead-root:hover {
+  background-color: var(--secondary-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Custom styles for SVG in pagination */
+.css-1gpuzre-MuiSvgIcon-root-MuiSelect-icon {
+  color: var(--text-color) !important;
+}
+
+/* Custom styles for pagination select */
+.css-oegngy-MuiInputBase-root-MuiTablePagination-select {
+  color: var(--text-color) !important;
+}
+
+.css-oegngy-MuiInputBase-root-MuiTablePagination-select:hover {
+  background-color: transparent !important;
+}
+
+.table-pagination .MuiTablePagination-select:hover,
+.table-pagination .MuiSvgIcon-root:hover {
+  color: var(--hover-color) !important;
+}
+
+.table-pagination .MuiTablePagination-actions button:hover {
+  background-color: transparent !important;
+}
