@@ -13,7 +13,7 @@
 - [DataBase](#database)
   - [securities Table](#securities-table)
   - [prices Table](#prices-table)
-- [Credits](#credits)x
+- [Credits](#credits)
 
 
 ## Introduction
