@@ -6,7 +6,7 @@ function Footer() {
   return (
     <Box className="footer-container">
       <Typography variant="body2" className="footer-text">
-        This website was made by Diogo Matos at the request of Engine IA for their Code Challenge.
+        This website was made by Diogo Matos
       </Typography>
     </Box>
   );
