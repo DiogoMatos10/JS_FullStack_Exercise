@@ -202,7 +202,7 @@ CREATE TABLE prices (
 
 
 ### Credits
-This project was entirely developed and documented by Diogo Matos, at the request of Engine IA for their Code Challenge.
+This project was entirely developed and documented by Diogo Matos.
 
 
 
